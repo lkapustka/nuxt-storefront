@@ -17,6 +17,12 @@ export default defineNuxtConfig({
     typedPages: true,
   },
 
+  runtimeConfig: {
+    public: {
+      apiBaseURL: process.env.API_BASE_URL,
+    },
+  },
+
   css: [
     '@/assets/scss/main.scss', // contains all global styles
   ],
