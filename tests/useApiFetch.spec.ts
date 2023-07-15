@@ -31,6 +31,18 @@ describe('useApiFetch', () => {
     useApiFetch(path);
 
     expect(useFetch).toHaveBeenCalledWith('/data', {
+      key: path,
+      baseURL: 'https://api.example.com',
+    });
+  });
+
+  it('should set correct key in options', () => {
+    const path = '/data';
+
+    useApiFetch(path);
+
+    expect(useFetch).toHaveBeenCalledWith('/data', {
+      key: path,
       baseURL: 'https://api.example.com',
     });
   });
@@ -45,6 +57,7 @@ describe('useApiFetch', () => {
 
     expect(useFetch).toHaveBeenCalledWith(path, {
       ...options,
+      key: path,
       baseURL: 'https://api.example.com',
     });
   });
