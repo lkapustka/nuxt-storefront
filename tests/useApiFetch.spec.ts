@@ -38,9 +38,19 @@ describe('useApiFetch', () => {
 
   it('should set correct key in options', () => {
     const path = '/data';
+    const options = {
+      key: 'test',
+    };
+
+    useApiFetch(path, options);
+    expect(useFetch).toHaveBeenCalledTimes(1);
+    expect(useFetch).toHaveBeenCalledWith('/data', {
+      key: 'test',
+      baseURL: 'https://api.example.com',
+    });
 
     useApiFetch(path);
-
+    expect(useFetch).toHaveBeenCalledTimes(2);
     expect(useFetch).toHaveBeenCalledWith('/data', {
       key: path,
       baseURL: 'https://api.example.com',
