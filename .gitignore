@@ -12,6 +12,9 @@ node_modules
 logs
 *.log
 
+# Coverage reports
+coverage
+
 # Misc
 .DS_Store
 .fleet
