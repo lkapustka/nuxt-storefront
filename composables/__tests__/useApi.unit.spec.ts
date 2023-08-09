@@ -1,7 +1,7 @@
 import { describe, beforeEach, afterEach, vi, it, expect } from 'vitest';
-import { useApiFetch } from 'composables/useApiFetch';
+import { useApi } from 'composables/useApi';
 
-describe('useApiFetch', () => {
+describe('useApi', () => {
   const mockUseRuntimeConfig = vi.fn(() => ({
     public: {
       apiBaseURL: 'https://api.example.com',
@@ -20,7 +20,7 @@ describe('useApiFetch', () => {
   it('should use useRuntimeConfig', () => {
     const path = '/data';
 
-    useApiFetch(path);
+    useApi(path);
 
     expect(useRuntimeConfig).toHaveBeenCalledTimes(1);
   });
@@ -28,7 +28,7 @@ describe('useApiFetch', () => {
   it('should set correct base URL in options', () => {
     const path = '/data';
 
-    useApiFetch(path);
+    useApi(path);
 
     expect(useFetch).toHaveBeenCalledWith('/data', {
       key: path,
@@ -42,14 +42,14 @@ describe('useApiFetch', () => {
       key: 'test',
     };
 
-    useApiFetch(path, options);
+    useApi(path, options);
     expect(useFetch).toHaveBeenCalledTimes(1);
     expect(useFetch).toHaveBeenCalledWith('/data', {
       key: 'test',
       baseURL: 'https://api.example.com',
     });
 
-    useApiFetch(path);
+    useApi(path);
     expect(useFetch).toHaveBeenCalledTimes(2);
     expect(useFetch).toHaveBeenCalledWith('/data', {
       key: path,
@@ -63,7 +63,7 @@ describe('useApiFetch', () => {
       lazy: true,
     };
 
-    useApiFetch(path, options);
+    useApi(path, options);
 
     expect(useFetch).toHaveBeenCalledWith(path, {
       ...options,

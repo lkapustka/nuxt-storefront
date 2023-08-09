@@ -1,6 +1,6 @@
 type useFetchType = typeof useFetch;
 
-export const useApiFetch: useFetchType = (path, options = {}) => {
+export const useApi: useFetchType = (path, options = {}) => {
   const config = useRuntimeConfig();
 
   options.key = options.key ?? (path as string);
